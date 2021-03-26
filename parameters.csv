@@ -1,0 +1,8 @@
+random_seed, 1
+t_end, 300000
+Ncells, 48
+Nbun, 12
+Ndend, 2
+re, 80
+ri, 80
+I_su, 0.0005
