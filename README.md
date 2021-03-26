@@ -1,15 +1,15 @@
 # Oxynet
 
-Simulate the oxytocin network model described in [Rossoni2008]
+A C++ simulation engine for the oxytocin network model described in [Rossoni2008]. Given a list of model parameters as inputs, oxynet simulate the model 
+dynamics and outputs on a file a list of firing times for the neurons in the network.
 
-DESCRIPTION
-    A C++ simulation engine for the oxytocin network model described in [Rossoni2008]. Given model parameters 
-    as inputs, oxynet simulate the model dynamics and outputs on a file a list of firing times for 
-    the neurons in the network.
- 
-USAGE
+Installation:
+
+
+Usage: 
+
+Run as : 
     oxytnet [-i parameters_filename] [-o spiketimes_filename] [-t output_connections_filename] [-g]
-    
     -g: stops execution before running the simulation
 
 CREATED
