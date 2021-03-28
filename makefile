@@ -14,7 +14,7 @@ RM			= rm -f
 
 .PHONY: clean
 
-all: $(TARGET)
+install: $(TARGET)
 	@echo Succesfully build $(TARGET)
 
 $(TARGET): $(OBJS)
