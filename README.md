@@ -1,22 +1,18 @@
 # Oxynet
--------
 
 A C++ program to simulate the dynamics of the oxytocin network model described in [1]. Given a list of model parameters as inputs, oxynet simulates the model dynamics and outputs on a file a list of firing times for the neurons in the network.
 
 
 ## Requirements:
 
-
-Get the oxynet source:
-
-git clone https://github.com/rosencode/oxynet.git
-cd [installation directory]
-
 ## Building:
 
-Run the following in your terminal:
+Clone the repository:
 
-https://github.com/rosencode/oxynet.git
+git clone https://github.com/rosencode/oxynet.git
+
+Building the code:
+
 ./make install
 
 
