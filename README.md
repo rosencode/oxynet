@@ -7,11 +7,6 @@ A C++ program to simulate the dynamics of the oxytocin network model described i
 
 ## Installation
 
-
-`git clone https://github.com/rosencode/oxynet.git`
-
-To build, simply run:
-
 ```bash
 $ git clone https://github.com/rosencode/oxynet.git
 $ make install
