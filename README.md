@@ -23,7 +23,8 @@ A table
 
 Name | Value
 ------------ | -------------
-v_{rest} | -65.0
+v_{rest} | -65.0 mV
+... | ...
 
 ## Created 
 01 March 2021
