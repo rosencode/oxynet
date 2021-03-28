@@ -14,6 +14,8 @@ To build, simply run:
 
 ```bash
 $ make install
+$ cd oxynet
+$ ./oxynet 
 ```
 
 
