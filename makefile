@@ -1,16 +1,16 @@
 # 'make' 			build executable 'oxynet'
 # 'make clean'	    removes all .o and executable files
 
-CC 			= g++
-CXXFLAGS 	= -std=c++17 -Wall
-OPTFLAGS 	= -O3
+CC          = g++
+CXXFLAGS    = -std=c++17 -Wall
+OPTFLAGS    = -O3
 
-TARGET		= oxynet
-SRCDIR 		= ./src
-SRCS		= $(SRCDIR)/main.cpp $(SRCDIR)/Parameters.cpp $(SRCDIR)/Connections.cpp
-OBJS 		= $(SRCS:.cpp=.o)
+TARGET      = oxynet
+SRCDIR      = ./src
+SRCS        = $(SRCDIR)/main.cpp $(SRCDIR)/Parameters.cpp $(SRCDIR)/Connections.cpp
+OBJS        = $(SRCS:.cpp=.o)
 	
-RM			= rm -f
+RM          = rm -f
 
 .PHONY: clean
 
