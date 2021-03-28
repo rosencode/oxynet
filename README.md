@@ -22,6 +22,7 @@ A C++ program to simulate the dynamics of the oxytocin network model described i
 A table
 
 Name | Value
+------------ | -------------
 v_{rest} | -65.0
 
 ## Created 
