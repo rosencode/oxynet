@@ -12,7 +12,9 @@ A C++ program to simulate the dynamics of the oxytocin network model described i
 
 To build, simply run:
 
-`$ ./make install`
+```bash
+$ make install
+```
 
 
 ## Usage
