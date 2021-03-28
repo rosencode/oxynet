@@ -7,14 +7,14 @@ A C++ program to simulate the dynamics of the oxytocin network model described i
 
 ## Building:
 
-git clone https://github.com/rosencode/oxynet.git
+`git clone https://github.com/rosencode/oxynet.git`
 
-./make install
+`./make install`
 
 
 ## Usage:
 
-oxytnet [-i parameters_filename] [-o spiketimes_filename] [-t output_connections_filename] [-g] 
+`oxytnet [-i parameters_filename] [-o spiketimes_filename] [-t output_connections_filename] [-g]`
 
 -g: stops before running the simulation
 
