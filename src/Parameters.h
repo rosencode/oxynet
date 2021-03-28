@@ -9,7 +9,8 @@
 
 typedef std::map<std::string, double> map_type;
 
-map_type initialize_model_parameters();
+
+bool initialize_parameters(map_type& );
 
 void show_parameters(const map_type& );
 void write_parameters(const map_type& , std::ofstream& );

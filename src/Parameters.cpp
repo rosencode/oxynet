@@ -27,10 +27,8 @@ using std::map;
 using std::vector;
 using std::string;
 
-
-map_type initialize_model_parameters()
+bool initialize_parameters(map_type &m)
 {
-    map_type m;
 
     m["Ncells"]        = 48;       // (>0)
     m["Ndend"]         = 2;        // (>1)
@@ -65,7 +63,9 @@ map_type initialize_model_parameters()
     m["t_end"]         = 300000;   // ms (>0)
     m["random_seed"]   = 1;        // set equal to 0 to randomize each trial
 
-    return m;
+
+    return true;
+
 }
 
 void show_parameters(const map_type &pars)

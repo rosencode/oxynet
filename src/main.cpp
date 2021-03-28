@@ -64,7 +64,8 @@ int main(int argc, char **argv)
     bool run_simulation_flag = true;
 
     // Initialise model parameters to default values
-    map_type model_pars = initialize_model_parameters();
+    map_type model_pars;
+    initialize_parameters(model_pars);
 
 
     // Parse command-line options
@@ -297,7 +298,7 @@ int main(int argc, char **argv)
             isi_buffer[i][0] += dt;     
 
             // **********************************************************
-            // SYNAPTIC INPUT (Time-dependent Poisson)
+            // UPDATE SYNAPTIC INPUT (Time-dependent Poisson)
             // **********************************************************  
 
             // Calculate synaptic input attenuation
@@ -308,7 +309,7 @@ int main(int argc, char **argv)
             att_1     = 1.0 - F_MAX*yy1/(yy1 + YY_BAR);
             att_2     = 1.0 - F_MAX*yy2/(yy2 + YY_BAR);
  
-            // Update the rates
+            // Update the synaptic input rates (mean counts)
 
             poisson_exc_1.param(ptype(LAMBDA_EXC_DT*att_1));
             poisson_inh_1.param(ptype(LAMBDA_INH_DT*att_1));
@@ -316,7 +317,7 @@ int main(int argc, char **argv)
             poisson_exc_2.param(ptype(LAMBDA_EXC_DT*att_2));
             poisson_inh_2.param(ptype(LAMBDA_INH_DT*att_2));
             
-            // Generate Poisson distributed event counts
+            // Generate Poisson-distributed event counts
 
 			nepsp_1 = poisson_exc_1(generator);
 			nipsp_1 = poisson_inh_1(generator);
@@ -330,7 +331,7 @@ int main(int argc, char **argv)
                     - AMP_INH * (v[i] - VI) * (nipsp_1 + nipsp_2);
 
             // **********************************************************
-            // MEMBRANE POTENTIAL
+            // UPDATE MEMBRANE POTENTIAL
             // **********************************************************       
 
             // Original equation
@@ -339,7 +340,7 @@ int main(int argc, char **argv)
             v[i] = V_C_2 * v[i]  + V_C_3 + syn_inp;
 
             // **********************************************************
-            // OT INPUT
+            // UPDATE OT INPUT
             // **********************************************************       
 
             OTinput = 0.0;     
@@ -353,7 +354,7 @@ int main(int argc, char **argv)
             }
 
             // **********************************************************
-            // AHP
+            // UPDATE AHP
             // **********************************************************  
 
             // Original equation
@@ -361,7 +362,7 @@ int main(int argc, char **argv)
             AHP[i]	=  AHP_C_2 * AHP[i];
 
             // **********************************************************
-            // Dynamic spike threshold
+            // UPDATE Dynamic spike threshold
             // **********************************************************  
 
             zzz = pow(AHP[i], NAHP);
@@ -369,27 +370,29 @@ int main(int argc, char **argv)
             vthreac[i] = vthreac[i] - OTinput;
 
             // **********************************************************
-            // SPIKE CHECK
+            // CHECK FOR SPIKES EVENTS
             // **********************************************************       
 
             if (v[i] > vthreac[i])
             { 
 
+                // Increse AHP
                 AHP[i] = AHP[i] + 1.0;
-                // Reset membrane potential after a spike
+
+                // Reset membrane potential
                 v[i] = VREST;
 
-                // Oxytocin not yet released
+                // Set oxytocin stores ready for release
                 released[i] = false;
 
                 // Reset interval since last spike
                 ttime[i] = 0.0;
 
-                // Cycle buffer
+                // Cycle ISI buffer
                 isi_buffer[i][1] = isi_buffer[i][0];
                 isi_buffer[i][0] = 0.0;
 
-                // Record spike time for neuron firing (in ms)
+                // Record spike time (in ms)
                 (*iter_spikes).time = t;
                 (*iter_spikes).index = i;
                 ++iter_spikes;
