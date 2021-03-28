@@ -18,6 +18,12 @@ A C++ program to simulate the dynamics of the oxytocin network model described i
 
 -g: stops before running the simulation
 
+
+A table
+
+Name | Value
+v_{rest} | -65.0
+
 ## Created 
 01 March 2021
 
