@@ -1,13 +1,14 @@
 # Oxynet
 
-**oxynet** simulates the spiking activity of the magnocellular oxytocin network, according to the model presented in in Rossoni et al. (2008) Emergent Synchronous Bursting of Oxytocin Neuronal Network. PLoS Comput Biol 4(7): e1000123. doi:10.1371/journal.pcbi.1000123.
+**oxynet** simulates the spiking activity of the magnocellular oxytocin network system, according to the model presented in "Emergent Synchronous Bursting of Oxytocin Neuronal Network" by Rossoni et al. https:doi:10.1371/journal.pcbi.1000123.
 
 ## Requirements
 
 * A C++17 compliant compiler
-* make
 
-## Installation
+## Installing
+
+You can build and install _oxynet_ using the following commands:
 
 ```bash
 $ git clone https://github.com/rosencode/oxynet.git
@@ -17,16 +18,17 @@ $ make install
 
 ## Usage
 
+
+
 `./oxynet [-i parameters_file] [-o spiketimes_file] [-t connections_file] [-g]`
 
-Launch `oxynet` without arguments to run a simulation of the oxytocin model with default parameters. 
+Launching _oxynet_ without arguments runs a simulation of the oxytocin network model with default parameters.
 
-Within the code, a set of network connections is generated at random (the random seed is saved as simulation parameter). 
-By default, oxynet saves the resulting network structure on file `connections.csv`; use flag `-t` to specify a different filename. 
+The network connections are generated randomly within the code and the resulting network structure is saved on file `connections.csv` (use flag `-t` to specify a different filename). The random seed is saved as a simulation parameter.
 
 Inside `network_connections_file`, the first row is in the form (N_c, N_d, N_b) where N_c is the number of neurons, N_d is the number of dendrites per each neuron, and N_b is the number of bundles in the network. The following rows give, for each cell, a comma-separated list of bunlde indices specifying which bundle each dendrite is projecting to.
 
-The spiking activity in the network is recorded by default in file `spike_times.csv` in the form of a list of (time, neuron_index) pais. 
+The spiking activity in the network is recorded by default in file `spike_times.csv` in the form of a list of (time, neuron_index) pairs. 
 Use flag `-o` to redirect the output to a different file. 
 
 By default, the parameters used in the simulation are saved in the file `parameters.csv` as a list of (parameter_name, parameter_value) pairs. To run a model  simulation with a different set of parameters, use flag `-i` passing a parameter file conforming to the same format.
