@@ -6,9 +6,7 @@
 
 * A C++17 compliant compiler
 
-## Installing
-
-You can build and install _oxynet_ using the following commands:
+## Installation
 
 ```bash
 $ git clone https://github.com/rosencode/oxynet.git
@@ -17,8 +15,6 @@ $ make install
 ```
 
 ## Usage
-
-
 
 `./oxynet [-i parameters_file] [-o spiketimes_file] [-t connections_file] [-g]`
 
