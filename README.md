@@ -1,6 +1,6 @@
 # Oxynet
 
-**oxynet** simulates the spiking activity of the magnocellular oxytocin network system, according to the model presented in ["Emergent Synchronous Bursting of Oxytocin Neuronal Network" by Rossoni et al.] (https:doi:10.1371/journal.pcbi.1000123.)
+**oxynet** simulates the spiking activity of the magnocellular oxytocin network system, according to the model presented in ["Emergent Synchronous Bursting of Oxytocin Neuronal Network" by Rossoni et al. (2008)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000123)
 
 ## Requirements
 
@@ -31,7 +31,7 @@ By default, the parameters used in the simulation are saved in the file `paramet
 
 Using flag `-g`, the code initializes the network according to the model parameters and saves the network structure, but stops execution before generating the temporal dynamics. This can be useful when studying dirrent network topologies, especially with large networks.
 
-## Model description
+## Model parameters
 
 Parameter | Value
 ------------ | -------------
