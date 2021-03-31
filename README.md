@@ -20,8 +20,10 @@ $ make install
 
 Launch _oxynet_ without arguments to run a simulation with default parameters. Select option `-i` to provide a parameter file (see below for accepted format). 
 
-A set of network connections is generated randomly within the code. The resulting network structure is saved on file `connections.csv`; select option `-t` to specify a different filename. The seed used to initialize the random number generator is saved with the other simulation parameters.
-On the connection file, the first row is in the form (N_c, N_d, N_b) where N_c is the number of neurons, N_d is the number of dendrites per each neuron, and N_b is the number of bundles in the network. The following rows give, for each cell, a comma-separated list of bunlde indices specifying which bundle each dendrite is projecting to.
+The network connections are generated randomly within the code and saved on file `connections.csv` (select option `-t` to specify a different filename). 
+The seed used to initialize the random number generator is saved with the other simulation parameters, thus allowing to run different simulations with the same network structure. 
+
+The connection file is formatted as follows. On the first row is the triple (N_c, N_d, N_b) where N_c is the number of neurons, N_d is the number of dendrites on each neuron, and N_b is the number of bundles in the network. Each following row gives, for the i-th cell, a comma-separated list of indices specifying the bundles wherein the cell has its dendrites.
 
 The spiking activity in the network is recorded by default on file `spike_times.csv` in the form of a list of (time, neuron_index) pairs. 
 Select option `-o` to redirect the output to a different file. 
