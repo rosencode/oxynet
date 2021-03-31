@@ -18,18 +18,17 @@ $ make install
 
 `./oxynet [-i parameters_file] [-o spiketimes_file] [-t connections_file] [-g]`
 
-Launching _oxynet_ without arguments runs a simulation of the oxytocin network model with default parameters.
+Launch _oxynet_ without arguments to run a simulation with default parameters. Select option `-i` to provide a parameter file (see below for accepted format). 
 
-The network connections are generated randomly within the code and the resulting network structure is saved on file `connections.csv` (use flag `-t` to specify a different filename). The random seed is saved as a simulation parameter.
+A set of network connections is generated randomly within the code. The resulting network structure is saved on file `connections.csv`; select option `-t` to specify a different filename. The seed used to initialize the random number generator is saved with the other simulation parameters.
+On the connection file, the first row is in the form (N_c, N_d, N_b) where N_c is the number of neurons, N_d is the number of dendrites per each neuron, and N_b is the number of bundles in the network. The following rows give, for each cell, a comma-separated list of bunlde indices specifying which bundle each dendrite is projecting to.
 
-Inside `network_connections_file`, the first row is in the form (N_c, N_d, N_b) where N_c is the number of neurons, N_d is the number of dendrites per each neuron, and N_b is the number of bundles in the network. The following rows give, for each cell, a comma-separated list of bunlde indices specifying which bundle each dendrite is projecting to.
+The spiking activity in the network is recorded by default on file `spike_times.csv` in the form of a list of (time, neuron_index) pairs. 
+Select option `-o` to redirect the output to a different file. 
 
-The spiking activity in the network is recorded by default in file `spike_times.csv` in the form of a list of (time, neuron_index) pairs. 
-Use flag `-o` to redirect the output to a different file. 
+By default, all the parameters used in the simulation are saved on file `parameters.csv` as a list of (parameter_name, parameter_value) pairs. 
 
-By default, the parameters used in the simulation are saved in the file `parameters.csv` as a list of (parameter_name, parameter_value) pairs. Use flag `-i` to run a model simulation with a different set of parameters. The file provided should conform to the same format.
-
-Using flag `-g`, the code initializes the network according to the model parameters and saves the network structure, but stops execution before generating the temporal dynamics. This can be useful when studying dirrent network topologies, especially with large networks.
+By selecting option `-g`, the code initializes and saves the network connections but execution is stopped before generating the temporal dynamics. This can be useful when studying different network topologies.
 
 ## Model parameters
 
