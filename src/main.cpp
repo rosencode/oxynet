@@ -166,8 +166,9 @@ int main(int argc, char **argv)
     const double AMP_EXC        = model_pars["a_E"];
     const double AMP_INH        = model_pars["a_I"];
 
-    const int    N_ATT_INPUT    = (int) model_pars["n_att_input"];
-    const double YY_BAR         = pow(model_pars["cann_thre"],model_pars["n_att_input"]);
+    // const int    N_ATT_INPUT    = (int) model_pars["n_att_input"];
+    const int    N_ATT_INPUT    = 4;
+    const double YY_BAR         = pow(model_pars["cann_thre"], N_ATT_INPUT);
     const double LAMBDA_EXC     = model_pars["re"] / 1000.0;
     const double LAMBDA_INH     = model_pars["ri"] / 1000.0;
 
@@ -177,22 +178,23 @@ int main(int argc, char **argv)
     const double HAP_MAX        = model_pars["hap_max"];
     const double HAP_TAU        = model_pars["hap_tau"];
 
-    const int    NAHP           = (int) model_pars["nahp"];
+    // const int    NAHP           = (int) model_pars["nahp"];
+    const int    NAHP           = 4;
     const double AHP_MAX        = model_pars["ahp_max"];
     const double AHP_C_1        = dt/ model_pars["ahp_tau"];
     const double AHP_C_2        = (1.0 - AHP_C_1);
     const double YYY            = pow(model_pars["half_ahp"], NAHP);
 
     const double F_MAX          = model_pars["f_max"];
-    const double K_2            = model_pars["k_2"];
+    const double K_2            = model_pars["T_OT_max"];
 
-    const double G_OT_C_1       = dt / model_pars["tau_g_ot"];
+    const double G_OT_C_1       = dt / model_pars["tau_ot"];
     const double G_OT_C_2       = (1.0 - G_OT_C_1);
     const double OT_TO_DEP      = model_pars["ot_to_dep"];
 
     const double REL_DELAY      = model_pars["rel_delay"];
-    const double F_TH           = model_pars["f_th"];
-    const double KPP_3          = model_pars["kpp_3"];
+    const double TAU_REL        = model_pars["tau_rel"];
+    const double K_R            = model_pars["k_r"];
 
     const double RES_C_1        = dt / model_pars["tau_r"];
     const double RES_C_2        = (1.0 - RES_C_1);
@@ -261,8 +263,11 @@ int main(int argc, char **argv)
     // vector<spike_event> spikes(SPIKE_TIMES_BUFFERSIZE);
     vector<spike_event> spikes(cfgs.SPIKE_TIMES_BUFFERSIZE);
 
-    auto iter_spikes = spikes.begin();
-    auto iter_spikes_end = spikes.end();
+    vector<spike_event>::iterator iter_spikes = spikes.begin();
+    vector<spike_event>::iterator iter_spikes_end = spikes.end();
+    
+    // auto iter_spikes = spikes.begin();
+    // auto iter_spikes_end = spikes.end();
 
     ofstream spiketimes_file(cfgs.spikeFile);
     if(!spiketimes_file){
@@ -417,7 +422,7 @@ int main(int argc, char **argv)
             if ( !released[i] && ttime[i]>REL_DELAY )
             {
                 released[i] = true;
-                if (isi_buffer[i][1] < F_TH) rel =  KPP_3 * res[i][0];
+                if (isi_buffer[i][1] < TAU_REL) rel =  K_R * res[i][0];
             }
          
             // **********************************************************

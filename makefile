@@ -1,5 +1,5 @@
-# 'make' 			build executable 'oxynet'
-# 'make clean'	    removes all .o and executable files
+# 'make install'       build executable 'oxynet'
+# 'make clean'         removes all .o and executable files
 
 CC          = g++
 CXXFLAGS    = -std=c++17 -Wall

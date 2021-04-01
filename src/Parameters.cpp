@@ -33,35 +33,33 @@ bool initialize_parameters(map_type &m)
     m["Ncells"]        = 48;       // (>0)
     m["Ndend"]         = 2;        // (>1)
     m["Nbun"]          = 12;       // (>0)
-    m["tau_m"]         =  10.8;    // ms (>0)
+    m["tau_m"]         = 10.8;     // ms (>0)
     m["vrest"]         = -62.0;    // mV
     m["vthre0"]        = -50.0;    // mV
     m["a_E"]           = 0.0645;   // 0.0645 -> EPSP amplitude of 4mV for v=v_E
     m["a_I"]           = 0.22;     // 0.22 -> IPSP amplitude of 4mV for v=v_I
     m["hap_tau"]       = 12.5;     // ms (>0)
     m["hap_max"]       = 40.0;     // mV
-    m["nahp"]          = 4;        //   (>0)
     m["half_ahp"]      = 45.0;     //
     m["ahp_max"]       = 40.0;     // mV?
     m["ahp_tau"]       = 2000.0;   // ms  (>0)
-    m["tau_g_ot"]      = 1000.0;   // ms  (>0)
+    m["tau_ot"]        = 1000.0;   // ms  (>0)
     m["ot_to_dep"]     = 0.5;      //
     m["rel_delay"]     = 5.0;      // ms (>0)
     m["cann_thre"]     = 0.03;     //
-    m["n_att_input"]   = 4;        // (>0)
     m["tau_cann"]      = 6000.0;   // ms (>0)
     m["ec_step"]       = 0.0025;   //
     m["res_max"]       = 200.0;    //
     m["tau_r"]         = 400000.0; // ms (>0)
     m["f_max"]         = 0.6;
-    m["f_th"]          = 50.0;     // ms
-    m["k_2"]           = 25.0;     // mV?
-    m["kpp_3"]         = 0.045;
+    m["tau_rel"]       = 50.0;     // ms
+    m["T_OT_max"]      = 25.0;     // mV
+    m["k_r"]           = 0.045;
     m["re"]            = 80.0;     // Hz (>0)
     m["ri"]            = 80.0;     // Hz (>0)
     m["I_su"]          = 0.0005;
     m["t_end"]         = 300000;   // ms (>0)
-    m["random_seed"]   = 1;        // set equal to 0 to randomize each trial
+    m["random_seed"]   = 1;        // set =0 to randomize each trial
 
 
     return true;
@@ -170,14 +168,15 @@ bool validate_input_parameters(map_type &m){
          m["Nbun"]         <  1      ||
          m["tau_m"]        <= 0      ||
          m["hap_tau"]      <= 0      ||
-         m["nahp"]         <  0      ||
          m["ahp_tau"]      <= 0      ||
-         m["tau_g_ot"]     <= 0      ||
+         m["tau_ot"]       <= 0      ||
+         m["tau_rel"]      <= 0      ||
          m["rel_delay"]    <  0      ||
-         m["n_att_input"]  <  0      ||
          m["tau_cann"]     <= 0      ||
          m["tau_r"]        <= 0      ||
-         m["f_max"]        >  1      ||
+         m["k_r"]          <= 0      ||
+         m["k_r"]          > 1       ||
+         m["f_max"]        > 1       ||
          m["re"]           <= 0      ||
          m["ri"]           <= 0 )    check = false;
 
