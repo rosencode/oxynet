@@ -1,12 +1,22 @@
-# Oxynet: a C++ simulation engine for the oxytocin network system  
+# Oxynet: a simulation engine for the oxytocin network system  
 
-**oxynet** simulates the spiking activity of the magnocellular oxytocin network system, based on the model presented in ["Emergent Synchronous Bursting of Oxytocin Neuronal Network" by Rossoni et al. (2008)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000123)
+**oxynet** simulates the spiking activity of the magnocellular oxytocin network system, based on the model presented in ["Emergent Synchronous Bursting of Oxytocin Neuronal Network" by Rossoni et al. (2008)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000123). 
 
-## Requirements
+## Installation
+
+### Requirements
+
+For `oxynet`:
 
 * A C++17 compliant compiler
 
-## Installation
+For `plotter.py`:
+
+* Python 3 (including numpy, pandas and matplotlib)
+
+## Building
+
+In a terminal, 
 
 ```bash
 $ git clone https://github.com/rosencode/oxynet.git
@@ -15,6 +25,8 @@ $ make install
 ```
 
 ## Usage
+
+### Oxynet
 
 `./oxynet [-i parameters_file] [-o spiketimes_file] [-t connections_file] [-g]`
 
@@ -32,6 +44,7 @@ The spiking activity in the network is recorded by default on file `spike_times.
 Select option `-o ` to redirect the output to a different file. 
 
 When the option `-g` is selected, _oxynet_ initializes and saves the network connections but the execution is stopped before generating the temporal dynamics. This can be useful for studying different network structures.
+
 
 ## Model parameters
 
@@ -70,6 +83,14 @@ t_end | 300000 | Simulation time (ms)
 random_seed | 1 | Seed for random number generation. Set 0 to randomize at each run
 
 The file may include as few parameters as required. Note that the current version of `oxynet` will only run simulations with Ndend = 2, but will still generate network connections with any value Ndend>1.
+
+### Visualization
+
+The Python script `plotter.py` allows a basic visualization of simulation results. Simply run 
+
+`python3 plotter.py [spike_datafile]`
+
+passing the name of the spike data file to show the firing rates of three sample cells in the network and a raster plot of the spiking activity.
 
 ## Created 
 01 March 2021
