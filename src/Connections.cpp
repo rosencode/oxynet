@@ -10,6 +10,8 @@
 #include <fstream>
 #include <sstream>      // stringstream
 #include <random>       // seed_seq, mt19937, sample
+#include <experimental/algorithm>
+
 
 using std::vector;      
 using std::string;
@@ -33,7 +35,8 @@ vector<vector<int> > generate_network_connections(int Nc, int Nd, int Nb, uint32
 
     for (uint i = 0; i < Nc; ++i)
     {
-        std::sample(bundle_list.begin(), bundle_list.end(), connections[i].begin(), Nd, my_rng);                    
+        // std::sample(bundle_list.begin(), bundle_list.end(), connections[i].begin(), Nd, my_rng); 
+        std::experimental::sample(bundle_list.begin(), bundle_list.end(), connections[i].begin(), Nd, my_rng); 
     }
     return connections;
 }
